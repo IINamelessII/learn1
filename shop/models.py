@@ -5,6 +5,7 @@ class Category(models.Model):
     name = models.CharField(max_length=64)
     parent = models.ForeignKey('self', default=None, blank=True, null=True,
         on_delete=models.CASCADE)
+    level = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.name}({self.parent.name})" if self.parent else self.name
@@ -19,4 +20,4 @@ class Object(models.Model):
     #image = models.ImageField(default=None)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.category.name})"
