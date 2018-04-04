@@ -1,0 +1,14 @@
+header {
+    background: url("images/banner.png") no-repeat center center fixed;
+    background-size: cover;
+    display: inline-block;
+}
+
+#busket{
+  color: red;
+  text-align: right;
+}
+
+#logo{
+
+}
