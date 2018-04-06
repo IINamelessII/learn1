@@ -1,23 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login to Nitro's</title>
-</head>
-<body>
-  <h1 id="login">Login</h1>
-  {% if message %}
-    <div id="message">
-      {{ message }}
-    </div>
-  {% endif %}
-  <form action="{% url 'login' %}" method="post">
-    {% csrf_token %}
-    <input name="username" type="text">
-    <input name="password" type="password">
-    <input type="submit" value="Login">
-  </form>
-</body>
-</html>
+{% extends "users/base.html" %}
+
+{% block title %}
+  Login to Nitro's site
+{% endblock %}
+
+{% block body %}
+<h1 id="login">Login</h1>
+{% if message %}
+  <div id="message">
+    {{ message }}
+  </div>
+{% endif %}
+<form action="{% url 'login' %}" method="post">
+  {% csrf_token %}
+  <input name="username" type="text">
+  <input name="password" type="password">
+  <input type="submit" value="Login">
+</form>
+{% endblock %}

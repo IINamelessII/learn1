@@ -36,3 +36,14 @@ def logout_view(request):
         'message': 'Logged out.'
     }
     return render(request, 'users/login.html', context)
+
+
+def signup_view(request):
+    # username = request.POST['username']
+    # password = request.POST['password']
+    # password2 = request.POST['password2']
+    # context = {
+    #
+    # }
+    # return render(request, 'users/signup.html', context)
+    pass
