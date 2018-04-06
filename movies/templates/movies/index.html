@@ -1,13 +1,18 @@
 {% extends "movies/base.html" %}
+{% load static %}
 
 {% block title %}
   Nitro's movies
 {% endblock %}
 
+{% block head %}
+  <link rel="stylesheet" href="{% static 'movies/index.css' %}">
+{% endblock %}
+
 {% block body %}
   <ul id="movies-list">
     {% for movie in movies %}
-      <a href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
+      <a class="movie"href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
     {% endfor %}
   </ul>
 {% endblock %}

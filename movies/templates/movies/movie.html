@@ -1,21 +1,37 @@
 {% extends "movies/base.html" %}
+{% load static %}
 
 {% block title %}
   {{ movie.name }} on Nitro's movies
 {% endblock %}
 
+{% block head %}
+  <link rel="stylesheet" href="{% static 'movies/movie.css' %}">
+{% endblock %}
+
 {% block body %}
-<ul id="info">
-  <li id="name">{{ movie.name }}</li>
-  <li id="preview"><img src="{{ movie.preview.url }}" alt=""></li>
-  <li id="genres">Genres: </li>
-  <ul id="genres">
-    {% for genre in movie.genres.all %}
-      <li class="genre">{{ genre.name }}</li>
-    {% endfor %}
-  </ul>
-  <li id="director">Director: {{ movie.director }}</li>
-  <li id="duration">Duration: {{ movie.duration }}</li>
-  <li id="description">Description: {{ movie.description }}</li>
-</ul>
+  <h1 id="name">{{ movie.name }}</h1>
+  <div class="container">
+    <div class="subcontainer">
+      <div id="preview"><img id="prev" src="{{ movie.preview.url }}" alt=""></div>
+    </div>
+    <div class="subcontainer">
+      <div id="genres">
+        <div class="text">Genres:</div>
+        {% for genre in movie.genres.all %}
+          <div class="genre">{{ genre.name }}</div>
+        {% endfor %}
+      </div>
+      <div id="short-info">
+        <div class="text">Director: </div>
+        <div id="director">{{ movie.director }}</div>
+        <div class="text">Duration: </div>
+        <div id="duration">{{ movie.duration }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="text">Description: </div>
+    <div id="description">{{ movie.description }}</div>
+  </div>
 {% endblock %}
