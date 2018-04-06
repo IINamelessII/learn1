@@ -19,8 +19,8 @@ class Movie(models.Model):
     name = models.CharField(max_length=64)
     duration = models.PositiveIntegerField()
     director = models.ForeignKey(Director, on_delete=models.CASCADE)
-    genres = models.ManyToManyField(Genre)
-    preview = models.ImageField()
+    genres = models.ManyToManyField(Genre, related_name='movies_genres')
+    preview = models.ImageField(upload_to='previews/')
     description = models.TextField()
 
     def __str__(self):

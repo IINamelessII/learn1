@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{ movie.name }} on Nitro's movies</title>
+</head>
+<body>
+
+  <ul id="info">
+    <li id="name">{{ movie.name }}</li>
+    <li id="preview"><img src="{{ movie.preview.url }}" alt=""></li>
+    <li id="genres">Genres: </li>
+    <ul id="genres">
+      {% for genre in movie.genres.all %}
+        <li class="genre">{{ genre }}</li>
+      {% endfor %}
+    </ul>
+    <li id="director">Director: {{ movie.director }}</li>
+    <li id="duration">Duration: {{ movie.duration }}</li>
+    <li id="description">Description: {{ movie.description }}</li>
+  </ul>
+</body>
+</html>

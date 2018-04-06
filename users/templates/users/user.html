@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Nitro's</title>
+</head>
+<body>
+  <h1 id="hello">Hello, {{ user.first_name }}</h1>
+  <ul>
+    <li id="currlog">Currently logged in as: {{ user.username }}</li>
+    <li id="logout"><a href="{% url 'logout' %}">Logout</a></li>
+  </ul>
+</body>
+</html>
