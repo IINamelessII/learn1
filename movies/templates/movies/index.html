@@ -12,7 +12,7 @@
 {% block body %}
   <ul id="movies-list">
     {% for movie in movies %}
-      <a class="movie"href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
+      <a href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
     {% endfor %}
   </ul>
 {% endblock %}

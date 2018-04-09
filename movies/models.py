@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Genre(models.Model):
@@ -27,21 +28,21 @@ class Movie(models.Model):
         return self.name
 
 
-class User(models.Model):
-    login = models.CharField(max_length=16)
-    password = models.CharField(max_length=16)
-    watched = models.ManyToManyField(Movie, related_name='users_watched')
-    watching = models.ManyToManyField(Movie, related_name='users_watching')
-    plan_to_watch = models.ManyToManyField(Movie, related_name='users_plan_to_watch')
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_user')
+    watched = models.ManyToManyField(Movie, null=True, blank=True, related_name='users_watched')
+    watching = models.ManyToManyField(Movie, null=True, blank=True, related_name='users_watching')
+    plan_to_watch = models.ManyToManyField(Movie, null=True, blank=True, related_name='users_plan_to_watch')
+    favorite = models.ManyToManyField(Movie, null=True, blank=True, related_name='users_favorite')
 
     def __str__(self):
-        return self.login
+        return self.user.username
 
 
 class Rate(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    movie = models.OneToOneField(Movie, on_delete=models.CASCADE)
-    value = models.PositiveSmallIntegerField()
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    value = models.IntegerField()
 
     def __str__(self):
         return f'{self.value} to {self.movie} by {self.user}'

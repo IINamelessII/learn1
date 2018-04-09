@@ -1,0 +1,55 @@
+{% extends "movies/base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ user.username }} on Nitro's movies
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'movies/profile.css' %}">
+{% endblock %}
+
+{% block body %}
+  {% if profile %}
+    {% if profile.user == user %}
+      <div id="extra">IT'S YOUR PROFILE, LOL</div>
+      <div id="username">{{ profile }}</div>
+      <div class="text">Favorite:</div>
+      {% for movie in profile.favorite.all %}
+        <a class="movie"href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
+      {% endfor %}
+      <div class="text">Watched:</div>
+      {% for movie in profile.watched.all %}
+        <a class="movie"href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
+      {% endfor %}
+      <div class="text">Watching:</div>
+      {% for movie in profile.watching.all %}
+        <a class="movie"href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
+      {% endfor %}
+      <div class="text">Plan to watch:</div>
+      {% for movie in profile.plan_to_watch.all %}
+        <a class="movie"href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
+      {% endfor %}
+    {% else %}
+      <div id="username">{{ profile }}</div>
+      <div class="text">Favorite:</div>
+      {% for movie in profile.favorite.all %}
+        <a class="movie"href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
+      {% endfor %}
+      <div class="text">Watched:</div>
+      {% for movie in profile.watched.all %}
+        <a class="movie"href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
+      {% endfor %}
+      <div class="text">Watching:</div>
+      {% for movie in profile.watching.all %}
+        <a class="movie"href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
+      {% endfor %}
+      <div class="text">Plan to watch:</div>
+      {% for movie in profile.plan_to_watch.all %}
+        <a class="movie"href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
+      {% endfor %}
+    {% endif %}
+  {% else %}
+    <p>LOL, U A THE GOD</p>
+  {% endif %}
+{% endblock %}
