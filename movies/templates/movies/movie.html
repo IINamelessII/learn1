@@ -19,7 +19,7 @@
       <div id="genres">
         <div class="text">Genres:</div>
         {% for genre in movie.genres.all %}
-          <div class="genre">{{ genre.name }}</div>
+          <a class="genre" href="/movies/genres/{{ genre.id }}">{{ genre.name }}</a>
         {% endfor %}
       </div>
       <div id="short-info">

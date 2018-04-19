@@ -17,6 +17,14 @@ def index(request):
     return render(request, 'movies/index.html', context)
 
 
+def genres(request):
+    context = {
+        'genres': Genre.objects.all,
+        'user': request.user
+    }
+    return render(request, 'movies/genres.html', context)
+
+
 def profile(request, username):
     try:
         profile = Profile.objects.get(user__username=username)
@@ -39,3 +47,16 @@ def movie(request, movie_id):
         'user': request.user
     }
     return render(request, 'movies/movie.html', context)
+
+
+def genre(request, genre_id):
+    try:
+        genre = Genre.objects.get(pk=genre_id)
+    except Genre.DoesNotExist:
+        raise Http404('Genre does not exist.')
+    context = {
+        'genre': genre,
+        'movies_with_genre': Movie.objects.filter(genres__id=genre_id),
+        'user': request.user
+    }
+    return render(request, 'movies/genre.html', context)

@@ -8,9 +8,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{% block title %}{% endblock %}</title>
   <link rel="stylesheet" href="{% static 'movies/base.css' %}">
+  <a href="{% url 'movies' %}">Movies</a>
+  <a href="{% url 'genres' %}">Genres</a>
   {% if request.user.is_authenticated %}
     <div>
-      <a href="profile/{{ user.username }}" id="profilebutton">{{ user.username }}</a>
+      <a href="{% url 'profile' username=user.username %}" id="profilebutton">{{ user.username }}</a>
       <p><a href="{% url 'logout' %}">Logout</a></p>
     </div>
   {% else %}

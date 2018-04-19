@@ -1,0 +1,20 @@
+{% extends "movies/base.html" %}
+{% load static %}
+
+{% block title %}
+  Nitro's movies
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'movies/genres.css' %}">
+{% endblock %}
+
+{% block body %}
+  <div id="genres-list">
+    {% for genre in genres %}
+      <div>
+        <a href="/movies/genres/{{ genre.id }}" class="genre">{{ genre.name }}</a>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
