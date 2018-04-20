@@ -1,0 +1,21 @@
+{% extends "movies/base.html" %}
+{% load static %}
+
+{% block title %}
+  {{ director.name }} on Nitro's movies
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'movies/director.css' %}">
+{% endblock %}
+
+{% block body %}
+  <h1 id="name">{{ director.name }}</h1>
+  {% if movies_with_director %}
+    {% for movie in movies_with_director %}
+      <a href="/movies/{{ movie.id }}" class="movie">{{ movie.name }}</a>
+    {% endfor %}
+  {% else %}
+    <div id="no-movies">No movies with this director :(</div>
+  {% endif %}
+{% endblock %}

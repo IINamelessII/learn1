@@ -30,10 +30,10 @@ class Movie(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile_user')
-    watched = models.ManyToManyField(Movie, null=True, blank=True, related_name='users_watched')
-    watching = models.ManyToManyField(Movie, null=True, blank=True, related_name='users_watching')
-    plan_to_watch = models.ManyToManyField(Movie, null=True, blank=True, related_name='users_plan_to_watch')
-    favorite = models.ManyToManyField(Movie, null=True, blank=True, related_name='users_favorite')
+    watched = models.ManyToManyField(Movie, blank=True, related_name='users_watched')
+    watching = models.ManyToManyField(Movie, blank=True, related_name='users_watching')
+    plan_to_watch = models.ManyToManyField(Movie, blank=True, related_name='users_plan_to_watch')
+    favorite = models.ManyToManyField(Movie, blank=True, related_name='users_favorite')
 
     def __str__(self):
         return self.user.username

@@ -25,6 +25,14 @@ def genres(request):
     return render(request, 'movies/genres.html', context)
 
 
+def directors(request):
+    context = {
+        'directors': Director.objects.all,
+        'user': request.user
+    }
+    return render(request, 'movies/directors.html', context)
+
+
 def profile(request, username):
     try:
         profile = Profile.objects.get(user__username=username)
@@ -60,3 +68,16 @@ def genre(request, genre_id):
         'user': request.user
     }
     return render(request, 'movies/genre.html', context)
+
+
+def director(request, director_id):
+    try:
+        director = Director.objects.get(pk=director_id)
+    except Director.DoesNotExist:
+        raise Http404('Director does not exist.')
+    context = {
+        'director': director,
+        'movies_with_director': Movie.objects.filter(director__id=director_id),
+        'user': request.user
+    }
+    return render(request, 'movies/director.html', context)

@@ -19,12 +19,12 @@
       <div id="genres">
         <div class="text">Genres:</div>
         {% for genre in movie.genres.all %}
-          <a class="genre" href="/movies/genres/{{ genre.id }}">{{ genre.name }}</a>
+          <a class="genre" href="{% url 'genre' genre_id=genre.id %}">{{ genre.name }}</a>
         {% endfor %}
       </div>
       <div id="short-info">
         <div class="text">Director: </div>
-        <div id="director">{{ movie.director }}</div>
+        <a href="{% url 'director' director_id=movie.director.id %}">{{ movie.director }}</a>
         <div class="text">Duration: </div>
         <div id="duration">{{ movie.duration }}</div>
       </div>
